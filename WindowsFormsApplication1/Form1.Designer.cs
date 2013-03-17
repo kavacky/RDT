@@ -38,6 +38,8 @@
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -130,11 +132,27 @@
             this.textBox2.TabIndex = 8;
             this.textBox2.Text = "56";
             // 
+            // folderBrowserDialog1
+            // 
+            this.folderBrowserDialog1.ShowNewFolderButton = false;
+            this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.folderBrowserDialog1_HelpRequest);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(740, 41);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(67, 37);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 577);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.radioButton4);
@@ -163,6 +181,8 @@
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

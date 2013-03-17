@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace WindowsFormsApplication1
 {
@@ -284,6 +285,34 @@ namespace WindowsFormsApplication1
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                //textBox1.Text = folderBrowserDialog1.SelectedPath;
+                richTextBox1.AppendText(folderBrowserDialog1.SelectedPath + "\n");
+                DirectoryInfo dirinfo = new DirectoryInfo(folderBrowserDialog1.SelectedPath);
+                FileInfo[] files = dirinfo.GetFiles();
+                //FileInfo[] files = dirinfo.EnumerateFiles().OrderByDescending(x => x.Name);
+
+                var filtered = files.Select(f => f)
+                    .Where(f => (f.Attributes & FileAttributes.Hidden) == 0);
+
+                //foreach (var f in files)
+                foreach (var f in filtered)
+                {
+                    richTextBox1.AppendText(f.FullName + "\n");
+                    //Debug.WriteLine(f);
+                }
+
+            }
+        }
+
+        private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
         {
 
         }
