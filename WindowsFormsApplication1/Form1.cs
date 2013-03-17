@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void processImages(String[] filenames)
+        private void processImages(String[] filenames, String relative_final_name)
         {
             int w = 0;
             int h = 0;
@@ -285,8 +285,10 @@ namespace WindowsFormsApplication1
 
             //richTextBox1.Text = openFileDialog1.FileNames.ToString();
 
-            richTextBox1.AppendText("Save to: " + dir + "/final.bmp" + "\n");
-            fin.Save(dir + "/final.bmp");
+            richTextBox1.AppendText("Save to: " + dir + "/" + relative_final_name + ".png" + "\n");
+            ///final.bmp
+
+            fin.Save(dir + "/" + relative_final_name + ".png", ImageFormat.Png);
         }
 
 /*        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -516,7 +518,7 @@ namespace WindowsFormsApplication1
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                processImages(openFileDialog1.FileNames);
+                processImages(openFileDialog1.FileNames, "final");
             }
         }
 
