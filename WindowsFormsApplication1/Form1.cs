@@ -308,6 +308,10 @@ namespace WindowsFormsApplication1
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
+                int frames_before = int.Parse(textBox3.Text);
+                int frames_after = int.Parse(textBox4.Text);
+                richTextBox1.AppendText("frames be: " + frames_before + "; af: " + frames_after + "\n");
+
                 //textBox1.Text = folderBrowserDialog1.SelectedPath;
                 richTextBox1.AppendText(folderBrowserDialog1.SelectedPath + "\n");
                 DirectoryInfo dirinfo = new DirectoryInfo(folderBrowserDialog1.SelectedPath);
@@ -315,12 +319,64 @@ namespace WindowsFormsApplication1
                 //FileInfo[] files = dirinfo.EnumerateFiles().OrderByDescending(x => x.Name);
 
                 var filtered = files.Select(f => f)
-                    .Where(f => (f.Attributes & FileAttributes.Hidden) == 0);
+                    .Where(f => (f.Attributes & FileAttributes.Hidden) == 0)
+                    .OrderBy(f => f.Name);
+                    //.OrderByDescending(f => f.Name);
+
+                int frame_count = filtered.Count();
+                richTextBox1.AppendText("total frames: " + frame_count + "\n");
+
+                progressBar2.Maximum = frame_count;
+                progressBar2.Value = 0;
 
                 //foreach (var f in files)
+                int i = 0;
                 foreach (var f in filtered)
                 {
+                    i++;
                     richTextBox1.AppendText(f.FullName + "\n");
+
+                    if (i > frames_before & i <= frame_count - frames_after)
+                    {
+                        richTextBox1.AppendText("process: " + i + "\n");
+                        int subframe_position = 0;
+
+                        String[] frames_to_process = new String[frames_before + frames_after + 1];
+                        //var frames_to_process = new List<string>[] { new List<string>(), new List<string>() };
+                        //myList.Last().Ap
+                        for (int b = frames_before; b > 0; b--)
+                        {
+                            //frames_to_process.Last().Add(filtered.ElementAt(i - b - 1).FullName);
+                            frames_to_process[subframe_position] = filtered.ElementAt(i - b - 1).FullName;
+                            subframe_position++;
+
+                            richTextBox1.AppendText("fb: " + filtered.ElementAt(i - b - 1).Name + "\n");
+                        }
+
+                        //frames_to_process.Last().Add(filtered.ElementAt(i - 1).FullName);
+                        frames_to_process[subframe_position] = filtered.ElementAt(i - 1).FullName;
+                        subframe_position++;
+
+                        richTextBox1.AppendText("cur: " + filtered.ElementAt(i - 1).Name + "\n");
+
+                        for (int a = 1; a <= frames_after; a++)
+                        {
+                            //frames_to_process.Last().Add(filtered.ElementAt(i + a - 1).FullName);
+                            frames_to_process[subframe_position] = filtered.ElementAt(i + a - 1).FullName;
+                            subframe_position++;
+                            richTextBox1.AppendText("fa: " + filtered.ElementAt(i + a - 1).Name + "\n");
+                        }
+
+                        //String[] final = frames_to_process.ToArray();
+
+                        processImages(frames_to_process, "pr_" + i);
+
+                        richTextBox1.AppendText("-- end " + "\n\n");
+                    }
+
+
+                    progressBar2.Value = progressBar2.Value + 1;
+                    Application.DoEvents();
                     //Debug.WriteLine(f);
                 }
 

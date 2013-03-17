@@ -42,6 +42,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -165,11 +166,19 @@
             this.textBox4.TabIndex = 11;
             this.textBox4.Text = "3";
             // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(707, 108);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(343, 31);
+            this.progressBar2.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 577);
+            this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button2);
@@ -205,6 +214,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.ProgressBar progressBar2;
     }
 }
 
