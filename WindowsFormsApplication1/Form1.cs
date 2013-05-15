@@ -284,18 +284,28 @@ namespace WindowsFormsApplication1
             //fin.SetPixel
 
             //richTextBox1.Text = openFileDialog1.FileNames.ToString();
+            dir = dir + "\\processed";
+            //richTextBox1.AppendText("DirFIN: " + dir + "\n");
 
-            richTextBox1.AppendText("Save to: " + dir + "/" + relative_final_name + ".png" + "\n");
+
+            relative_final_name = relative_final_name.PadLeft(count.ToString().Length, '0');
+
+            richTextBox1.AppendText("Save to: " + dir + "\\" + relative_final_name + ".png" + "\n");
             ///final.bmp
+            //System.IO.Cre
+            if (!System.IO.Directory.Exists(dir))
+            {
+                System.IO.Directory.CreateDirectory(dir);
+            }
 
-            fin.Save(dir + "/" + relative_final_name + ".png", ImageFormat.Png);
+            fin.Save(dir + "\\" + relative_final_name + ".png", ImageFormat.Png);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                processImages(openFileDialog1.FileNames, "final");
+                processImages(openFileDialog1.FileNames, "");
             }
         }
 
@@ -369,7 +379,7 @@ namespace WindowsFormsApplication1
 
                         //String[] final = frames_to_process.ToArray();
 
-                        processImages(frames_to_process, "pr_" + i);
+                        processImages(frames_to_process, "" + i);
 
                         richTextBox1.AppendText("-- end " + "\n\n");
                     }
