@@ -18,38 +18,47 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+        /*
+         * Galvenā apstrāde
+         */
         private void processImages(String[] filenames, String relative_final_name)
         {
-            int w = 0;
-            int h = 0;
+            int width = 0;
+            int height = 0;
             int count = 0;
             string dir = "";
 
+            // Ielasam attēlu izmērus un skaitu
             foreach (String fn in filenames)
             {
                 Image t = Image.FromFile(fn);
-                w = t.Width;
-                h = t.Height;
+                width = t.Width;
+                height = t.Height;
                 dir = System.IO.Path.GetDirectoryName(fn);
                 count++;
                 t.Dispose();
             }
+
+            txtStatus.AppendText("\nProcessing...\n");
             txtStatus.AppendText("Count: " + count + "\n");
-            txtStatus.AppendText("Size: " + w + "x" + h + "\n");
+            txtStatus.AppendText("Size: " + width + "x" + height + "\n");
             txtStatus.AppendText("Dir: " + dir + "\n");
 
+            // Sākam veidot masku
             Random rand = new Random();
-            int[,] mask = new int[w, h];
-            txtStatus.AppendText("Mask: " + w + "x" + h + "\n");
+            int[,] mask = new int[width, height];
+            txtStatus.AppendText("Mask: " + width + "x" + height + "\n");
 
+            /*
+             * x * y pikseļu bloki
+             */
             if (rdTypeBlock.Checked)
             {
-                // Blocks
-
+                // Nosakam bloku skaitu
                 int block_width = int.Parse(txtBlockWidth.Text);
                 int block_height = int.Parse(txtBlockHeight.Text);
-                int block_count_x = w / block_width;
-                int block_count_y = h / block_height;
+                int block_count_x = width / block_width;
+                int block_count_y = height / block_height;
 
                 if (block_count_x < 1)
                 {
@@ -62,325 +71,260 @@ namespace WindowsFormsApplication1
 
                 txtStatus.AppendText("Blocks: " + block_count_x + " x " + block_count_y + "\n");
 
+                // Izveidojam masku blokiem
                 int[,] blockmask = new int[block_count_x, block_count_y];
                 for (int y = 0; y < block_count_y; y++)
                 {
-
                     for (int x = 0; x < block_count_x; x++)
                     {
-                        //mask[x, y] = ;
                         int rnd = rand.Next(0, count);
                         blockmask[x, y] = rnd;
-                        //richTextBox1.AppendText("BM: " + x + " - " + y + " = " + rnd + "\n");
                     }
-                    //break;
                 }
 
-                //richTextBox1.Text = "";
-                /*
-                //int blocksize = w / 816; // 4x4
-                //int blocksize = w / (816 / 4); // 4x4
-                int blocksize = w / 51;
-
-                
-                int[,] blockmask = new int[w / blocksize, h / blocksize];
-                for (int y = 0; y < h / blocksize; y++)
+                // Pārnesam bloku masku uz pilno attēla masku
+                for (int x = 0; x < width; x++)
                 {
-
-                    for (int x = 0; x < w / blocksize; x++)
+                    for (int y = 0; y < height; y++)
                     {
-                        //mask[x, y] = ;
-                        int rnd = rand.Next(0, count);
-                        blockmask[x, y] = rnd;
-                        //richTextBox1.AppendText("Mask: " + x + "x" + y + " = " + rnd + "\n");
-                    }
-                    //break;
-                }*/
+                        int blockmask_x = x / block_width;
+                        int blockmask_y = y / block_height;
 
-                int mx = 0;
-                int my = 0;
-                for (int x = 0; x < w; x++)
-                {
-                    for (int y = 0; y < h; y++)
-                    {
-                        //mask[x, y] = ;
-                        //int rnd = rand.Next(0, count);
-                        /*int px = x / blocksize;
-                        int py = y / blocksize;
-
-                        if (px > w / blocksize)
+                        // Likvidējam dalīšanas noapaļošanas iespējamās kļūdas
+                        if (blockmask_x >= block_count_x)
                         {
-                            px = (w / blocksize)-2;
+                            blockmask_x = block_count_x - 1;
+                        }
+                        if (blockmask_x < 0)
+                        {
+                            blockmask_x = 0;
                         }
 
-                        if (py > h / blocksize)
+                        if (blockmask_y >= block_count_y)
                         {
-                            py = (h / blocksize)-2;
+                            blockmask_y = block_count_y - 1;
+                        }
+                        if (blockmask_y < 0)
+                        {
+                            blockmask_y = 0;
                         }
 
-                        px = 1;
-                        py = 1;*/
-
-                        int px = x / block_width;
-                        int py = y / block_height;
-
-                        if (px >= block_count_x)
-                        {
-                            px = block_count_x - 1;
-                        }
-                        if (px < 0)
-                        {
-                            px = 0;
-                        }
-
-                        if (py >= block_count_y)
-                        {
-                            py = block_count_y - 1;
-                        }
-                        if (py < 0)
-                        {
-                            py = 0;
-                        }
-
-                        /*px--;
-                        py--;
-                        if (px < 0) { px = 0; }
-                        if (py < 0) { py = 0; }
-                        px = 1 -1;
-                        py = 1 -1;
-
-                        if (px > mx) { mx = px; }
-                        if (py > my) { my = py; }*/
-
-                        //richTextBox1.AppendText("Get blocks: " + px + " x " + py + "\n");
-                        //richTextBox1.Text = "Get blocks: " + px + " x " + py + "\n";
-
-                        //px = 0; py = 0;
+                        // Ienesam attēla maskas pikselī atbilstošu bloka maskas pikseli
                         int rnd = 0;
                         try
                         {
-                            //  int rnd = blockmask[px, py];
-                            //richTextBox1.AppendText("Try Get blocks: " + px + " x " + py + "\n");
-                            rnd = blockmask[px, py];
-                            // richTextBox1.AppendText("OK\n");
+                            rnd = blockmask[blockmask_x, blockmask_y];
                         }
                         catch (System.IndexOutOfRangeException ex)
                         {
-                            //richTextBox1.AppendText(ex.Message);
-                            txtStatus.AppendText(px + " x " + py + " - " + ex.Message + "\n");
+
                         }
                         finally
                         {
-                            //mask[x, y] = 1;
+                            
                         }
                         mask[x, y] = rnd;
-                        //richTextBox1.AppendText("Mask: " + x + "x" + y + " = " + rnd + "\n");
                     }
-                    //break;
                 }
-                txtStatus.AppendText("Get blocks: " + mx + " x " + my + "\n");
             }
 
+            /*
+             * Līnijas horizontāli
+             */
             if (rdTypeLinesHorizontal.Checked)
             {
-                // Lines horizontal
-                for (int y = 0; y < h; y++)
+                for (int y = 0; y < height; y++)
                 {
                     int rnd = rand.Next(0, count);
-                    for (int x = 0; x < w; x++)
+                    for (int x = 0; x < width; x++)
                     {
-                        //mask[x, y] = ;
                         mask[x, y] = rnd;
-                        //richTextBox1.AppendText("Mask: " + x + "x" + y + " = " + rnd + "\n");
                     }
-                    //break;
                 }
             }
 
+            /*
+             * Līnijas vertikāli
+             */
             if (rdTypeLinesVertical.Checked)
             {
-                // Lines vertical
-                for (int x = 0; x < w; x++)
+                for (int x = 0; x < width; x++)
                 {
                     int rnd = rand.Next(0, count);
-                    for (int y = 0; y < h; y++)
+                    for (int y = 0; y < height; y++)
                     {
-                        //mask[x, y] = ;
                         mask[x, y] = rnd;
-                        //richTextBox1.AppendText("Mask: " + x + "x" + y + " = " + rnd + "\n");
                     }
-                    //break;
                 }
             }
 
+            /*
+             * Atsevišķi pikseļi
+             */
             if (rdTypePixel.Checked)
             {
-                // Pixel
-                for (int x = 0; x < w; x++)
+                for (int x = 0; x < width; x++)
                 {
-                    for (int y = 0; y < h; y++)
+                    for (int y = 0; y < height; y++)
                     {
-                        //mask[x, y] = ;
                         int rnd = rand.Next(0, count);
                         mask[x, y] = rnd;
-                        //richTextBox1.AppendText("Mask: " + x + "x" + y + " = " + rnd + "\n");
                     }
-                    //break;
                 }
             }
 
-
-            //int[,] multiDimensionalArray1 = new int[w, h];
-            //Image final = Image
-            Bitmap fin = new Bitmap(w, h);
-
+            // Veidojam gala attēlu
+            Bitmap fin = new Bitmap(width, height);
 
             int n = 0;
-            progressSingle.Maximum = w * h;
+            progressSingle.Maximum = width * height;
             progressSingle.Value = 0;
+
+            // Pēc kārtas lasam visus norādītos attēlus
             foreach (String fn in filenames)
             {
                 Bitmap t = new Bitmap(fn);
-
-
-                for (int x = 0; x < w; x++)
+                for (int x = 0; x < width; x++)
                 {
-                    for (int y = 0; y < h; y++)
+                    for (int y = 0; y < height; y++)
                     {
-
+                        // Ierakstam gala attēlā šī attēla pikseļus, ja maskā tā norādīts
+                        /*
+                         * Šī ir tā vieta, kur jāveic pirmā optimizācija, kad nepieciešams,
+                         * jo izmantota ļoti neefektīva metode pikseļu kopēšanai
+                         */
                         if (mask[x, y] == n)
                         {
                             fin.SetPixel(x, y, t.GetPixel(x, y));
                             progressSingle.Value = progressSingle.Value + 1;
                             Application.DoEvents();
                         }
-                        //mask[x, y] = ;
-                        //int rnd = rand.Next(0, count);
-                        //mask[x, y] = rnd;
-                        //richTextBox1.AppendText("Mask: " + x + "x" + y + " = " + rnd + "\n");
                     }
-                    //break;
                 }
-
-
-                //richTextBox1.Text = richTextBox1.Text + "\n" + fn;
-                // Image t = Image.FromFile(fn);
-                //richTextBox1.Text = richTextBox1.Text + "\n" + a.Width + " x " + a.Height + "\n";
-                //w = t.Width;
-                //h = t.Height;
-                //dir = System.IO.Path.GetDirectoryName(fn);
-                //count++;
-                //t.Dispose();
                 t.Dispose();
                 n++;
             }
-
-
-
-            //fin.SetPixel
-
-            //richTextBox1.Text = openFileDialog1.FileNames.ToString();
+            
             dir = dir + "\\processed";
-            //richTextBox1.AppendText("DirFIN: " + dir + "\n");
 
-
+            // Lai nosaukumi būtu 0001, 0002, 0003, nevis 1, 2, 3
             relative_final_name = relative_final_name.PadLeft(count.ToString().Length, '0');
 
             txtStatus.AppendText("Save to: " + dir + "\\" + relative_final_name + ".png" + "\n");
-            ///final.bmp
-            //System.IO.Cre
+
             if (!System.IO.Directory.Exists(dir))
             {
                 System.IO.Directory.CreateDirectory(dir);
             }
 
             fin.Save(dir + "\\" + relative_final_name + ".png", ImageFormat.Png);
+            txtStatus.AppendText("... complete!\n");
         }
 
+        /*
+         * Viens attēls
+         */
         private void btnSingle_Click(object sender, EventArgs e)
         {
+            // Atveram logu, kur lietotājs iezīmē attēlus
+            txtStatus.AppendText("Single begin...\n\n");
             if (dlgSelectFiles.ShowDialog() == DialogResult.OK)
             {
+                // Apstrādājam visus izvēlētos attēlus
                 processImages(dlgSelectFiles.FileNames, "");
+                txtStatus.AppendText("\n... single finished!\n");
+            }
+            else
+            {
+                txtStatus.AppendText("Canceled.\n");
             }
         }
 
+        /*
+         * Attēlu secība
+         */
         private void btnSequence_Click(object sender, EventArgs e)
         {
+            // Liekam izvēlēties direktoriju ar attēliem
+            txtStatus.AppendText("Sequence begin...\n\n");
             if (dlgSelectFolder.ShowDialog() == DialogResult.OK)
             {
-                int frames_before = int.Parse(txtFramesBefore.Text);
-                int frames_after = int.Parse(txtFramesAfter.Text);
-                txtStatus.AppendText("frames be: " + frames_before + "; af: " + frames_after + "\n");
-
-                //textBox1.Text = folderBrowserDialog1.SelectedPath;
-                txtStatus.AppendText(dlgSelectFolder.SelectedPath + "\n");
+                txtStatus.AppendText("Reading folder: " + dlgSelectFolder.SelectedPath + "\n");
                 DirectoryInfo dirinfo = new DirectoryInfo(dlgSelectFolder.SelectedPath);
                 FileInfo[] files = dirinfo.GetFiles();
-                //FileInfo[] files = dirinfo.EnumerateFiles().OrderByDescending(x => x.Name);
 
+                // Sakārtojam alfabētiski, kas skaitļiem nozīmēs pēc kārtas
                 var filtered = files.Select(f => f)
                     .Where(f => (f.Attributes & FileAttributes.Hidden) == 0)
                     .OrderBy(f => f.Name);
-                    //.OrderByDescending(f => f.Name);
 
+                // Kopējais atrasto attēlu skaits
                 int frame_count = filtered.Count();
-                txtStatus.AppendText("total frames: " + frame_count + "\n");
+                txtStatus.AppendText("Frames total: " + frame_count + "\n");
+
+                // Cik gara secība uz priekšu un atpakaļ no pašreizējā kadra
+                int frames_before = int.Parse(txtFramesBefore.Text);
+                int frames_after = int.Parse(txtFramesAfter.Text);
+                txtStatus.AppendText("Frames before: " + frames_before + "; after: " + frames_after + "\n");
 
                 progressSequence.Maximum = frame_count;
                 progressSequence.Value = 0;
 
-                //foreach (var f in files)
-                int i = 0;
+                // Ejam cauri visiem attēliem un apstrādājam
+                int frame_current = 0;
                 foreach (var f in filtered)
                 {
-                    i++;
-                    txtStatus.AppendText(f.FullName + "\n");
+                    frame_current++;
+                    txtStatus.AppendText("\nFrame: " + f.FullName + "\n");
 
-                    if (i > frames_before & i <= frame_count - frames_after)
+                    // Ja pašreizējam attēlam būs pilns iepriekšējo/nākamo attēlu komplekts...
+                    if (frame_current > frames_before & frame_current <= frame_count - frames_after)
                     {
-                        txtStatus.AppendText("process: " + i + "\n");
+                        txtStatus.AppendText("Frame being processed: " + frame_current + "\n");
                         int subframe_position = 0;
 
+                        // Vācam visus kadrus, kuri jāapstrādā pašreizējam kadram
                         String[] frames_to_process = new String[frames_before + frames_after + 1];
-                        //var frames_to_process = new List<string>[] { new List<string>(), new List<string>() };
-                        //myList.Last().Ap
+                        
+                        // Kadri pirms pašreizējā
                         for (int b = frames_before; b > 0; b--)
                         {
-                            //frames_to_process.Last().Add(filtered.ElementAt(i - b - 1).FullName);
-                            frames_to_process[subframe_position] = filtered.ElementAt(i - b - 1).FullName;
+                            frames_to_process[subframe_position] = filtered.ElementAt(frame_current - b - 1).FullName;
                             subframe_position++;
-
-                            txtStatus.AppendText("fb: " + filtered.ElementAt(i - b - 1).Name + "\n");
+                            txtStatus.AppendText("Before: " + filtered.ElementAt(frame_current - b - 1).Name + "\n");
                         }
 
-                        //frames_to_process.Last().Add(filtered.ElementAt(i - 1).FullName);
-                        frames_to_process[subframe_position] = filtered.ElementAt(i - 1).FullName;
+                        // Pašreizējais kadrs
+                        frames_to_process[subframe_position] = filtered.ElementAt(frame_current - 1).FullName;
                         subframe_position++;
+                        txtStatus.AppendText("Current: " + filtered.ElementAt(frame_current - 1).Name + "\n");
 
-                        txtStatus.AppendText("cur: " + filtered.ElementAt(i - 1).Name + "\n");
-
+                        // Kadri pēc pašreizējā
                         for (int a = 1; a <= frames_after; a++)
                         {
-                            //frames_to_process.Last().Add(filtered.ElementAt(i + a - 1).FullName);
-                            frames_to_process[subframe_position] = filtered.ElementAt(i + a - 1).FullName;
+                            frames_to_process[subframe_position] = filtered.ElementAt(frame_current + a - 1).FullName;
                             subframe_position++;
-                            txtStatus.AppendText("fa: " + filtered.ElementAt(i + a - 1).Name + "\n");
+                            txtStatus.AppendText("After: " + filtered.ElementAt(frame_current + a - 1).Name + "\n");
                         }
 
-                        //String[] final = frames_to_process.ToArray();
+                        // Apstrādājam visus savāktos kadrus
+                        processImages(frames_to_process, "" + frame_current);
 
-                        processImages(frames_to_process, "" + i);
-
-                        txtStatus.AppendText("-- end " + "\n\n");
+                        txtStatus.AppendText("Frame done!\n\n");
                     }
-
+                    else
+                    {
+                        txtStatus.AppendText("Insufficient before/after frames for: " + frame_current + "\n");
+                    }
 
                     progressSequence.Value = progressSequence.Value + 1;
                     Application.DoEvents();
-                    //Debug.WriteLine(f);
                 }
-
+                txtStatus.AppendText("\n... sequence finished.\n");
+            }
+            else
+            {
+                txtStatus.AppendText("Canceled.\n");
             }
         }
     }
