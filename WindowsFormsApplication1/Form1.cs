@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace WindowsFormsApplication1
+namespace RDT
 {
     public partial class frmMain : Form
     {

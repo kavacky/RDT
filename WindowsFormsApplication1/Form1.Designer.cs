@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace RDT
 {
     partial class frmMain
     {
