@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.dlgSelectFiles = new System.Windows.Forms.OpenFileDialog();
             this.btnSingle = new System.Windows.Forms.Button();
             this.progressSingle = new System.Windows.Forms.ProgressBar();
@@ -246,6 +247,7 @@
             this.Controls.Add(this.progressSingle);
             this.Controls.Add(this.btnSingle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
