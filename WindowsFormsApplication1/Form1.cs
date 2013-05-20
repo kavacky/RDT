@@ -11,9 +11,9 @@ using System.IO;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
         }
@@ -27,31 +27,27 @@ namespace WindowsFormsApplication1
 
             foreach (String fn in filenames)
             {
-                //richTextBox1.Text = richTextBox1.Text + "\n" + fn;
                 Image t = Image.FromFile(fn);
-                //richTextBox1.Text = richTextBox1.Text + "\n" + a.Width + " x " + a.Height + "\n";
                 w = t.Width;
                 h = t.Height;
                 dir = System.IO.Path.GetDirectoryName(fn);
                 count++;
                 t.Dispose();
             }
-            richTextBox1.AppendText("Count: " + count + "\n");
-            richTextBox1.AppendText("Size: " + w + "x" + h + "\n");
-            richTextBox1.AppendText("Dir: " + dir + "\n");
+            txtStatus.AppendText("Count: " + count + "\n");
+            txtStatus.AppendText("Size: " + w + "x" + h + "\n");
+            txtStatus.AppendText("Dir: " + dir + "\n");
 
-            //fixed int[8] mask;
             Random rand = new Random();
             int[,] mask = new int[w, h];
-            richTextBox1.AppendText("Mask: " + w + "x" + h + "\n");
+            txtStatus.AppendText("Mask: " + w + "x" + h + "\n");
 
-
-            if (radioButton4.Checked)
+            if (rdTypeBlock.Checked)
             {
                 // Blocks
 
-                int block_width = int.Parse(textBox1.Text);
-                int block_height = int.Parse(textBox2.Text);
+                int block_width = int.Parse(txtBlockWidth.Text);
+                int block_height = int.Parse(txtBlockHeight.Text);
                 int block_count_x = w / block_width;
                 int block_count_y = h / block_height;
 
@@ -64,7 +60,7 @@ namespace WindowsFormsApplication1
                     block_count_y = 1;
                 }
 
-                richTextBox1.AppendText("Blocks: " + block_count_x + " x " + block_count_y + "\n");
+                txtStatus.AppendText("Blocks: " + block_count_x + " x " + block_count_y + "\n");
 
                 int[,] blockmask = new int[block_count_x, block_count_y];
                 for (int y = 0; y < block_count_y; y++)
@@ -171,7 +167,7 @@ namespace WindowsFormsApplication1
                         catch (System.IndexOutOfRangeException ex)
                         {
                             //richTextBox1.AppendText(ex.Message);
-                            richTextBox1.AppendText(px + " x " + py + " - " + ex.Message + "\n");
+                            txtStatus.AppendText(px + " x " + py + " - " + ex.Message + "\n");
                         }
                         finally
                         {
@@ -182,10 +178,10 @@ namespace WindowsFormsApplication1
                     }
                     //break;
                 }
-                richTextBox1.AppendText("Get blocks: " + mx + " x " + my + "\n");
+                txtStatus.AppendText("Get blocks: " + mx + " x " + my + "\n");
             }
 
-            if (radioButton3.Checked)
+            if (rdTypeLinesHorizontal.Checked)
             {
                 // Lines horizontal
                 for (int y = 0; y < h; y++)
@@ -201,7 +197,7 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            if (radioButton2.Checked)
+            if (rdTypeLinesVertical.Checked)
             {
                 // Lines vertical
                 for (int x = 0; x < w; x++)
@@ -217,7 +213,7 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            if (radioButton1.Checked)
+            if (rdTypePixel.Checked)
             {
                 // Pixel
                 for (int x = 0; x < w; x++)
@@ -240,8 +236,8 @@ namespace WindowsFormsApplication1
 
 
             int n = 0;
-            progressBar1.Maximum = w * h;
-            progressBar1.Value = 0;
+            progressSingle.Maximum = w * h;
+            progressSingle.Value = 0;
             foreach (String fn in filenames)
             {
                 Bitmap t = new Bitmap(fn);
@@ -255,7 +251,7 @@ namespace WindowsFormsApplication1
                         if (mask[x, y] == n)
                         {
                             fin.SetPixel(x, y, t.GetPixel(x, y));
-                            progressBar1.Value = progressBar1.Value + 1;
+                            progressSingle.Value = progressSingle.Value + 1;
                             Application.DoEvents();
                         }
                         //mask[x, y] = ;
@@ -290,7 +286,7 @@ namespace WindowsFormsApplication1
 
             relative_final_name = relative_final_name.PadLeft(count.ToString().Length, '0');
 
-            richTextBox1.AppendText("Save to: " + dir + "\\" + relative_final_name + ".png" + "\n");
+            txtStatus.AppendText("Save to: " + dir + "\\" + relative_final_name + ".png" + "\n");
             ///final.bmp
             //System.IO.Cre
             if (!System.IO.Directory.Exists(dir))
@@ -301,30 +297,25 @@ namespace WindowsFormsApplication1
             fin.Save(dir + "\\" + relative_final_name + ".png", ImageFormat.Png);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSingle_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (dlgSelectFiles.ShowDialog() == DialogResult.OK)
             {
-                processImages(openFileDialog1.FileNames, "");
+                processImages(dlgSelectFiles.FileNames, "");
             }
         }
 
-        private void progressBar1_Click(object sender, EventArgs e)
+        private void btnSequence_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            if (dlgSelectFolder.ShowDialog() == DialogResult.OK)
             {
-                int frames_before = int.Parse(textBox3.Text);
-                int frames_after = int.Parse(textBox4.Text);
-                richTextBox1.AppendText("frames be: " + frames_before + "; af: " + frames_after + "\n");
+                int frames_before = int.Parse(txtFramesBefore.Text);
+                int frames_after = int.Parse(txtFramesAfter.Text);
+                txtStatus.AppendText("frames be: " + frames_before + "; af: " + frames_after + "\n");
 
                 //textBox1.Text = folderBrowserDialog1.SelectedPath;
-                richTextBox1.AppendText(folderBrowserDialog1.SelectedPath + "\n");
-                DirectoryInfo dirinfo = new DirectoryInfo(folderBrowserDialog1.SelectedPath);
+                txtStatus.AppendText(dlgSelectFolder.SelectedPath + "\n");
+                DirectoryInfo dirinfo = new DirectoryInfo(dlgSelectFolder.SelectedPath);
                 FileInfo[] files = dirinfo.GetFiles();
                 //FileInfo[] files = dirinfo.EnumerateFiles().OrderByDescending(x => x.Name);
 
@@ -334,21 +325,21 @@ namespace WindowsFormsApplication1
                     //.OrderByDescending(f => f.Name);
 
                 int frame_count = filtered.Count();
-                richTextBox1.AppendText("total frames: " + frame_count + "\n");
+                txtStatus.AppendText("total frames: " + frame_count + "\n");
 
-                progressBar2.Maximum = frame_count;
-                progressBar2.Value = 0;
+                progressSequence.Maximum = frame_count;
+                progressSequence.Value = 0;
 
                 //foreach (var f in files)
                 int i = 0;
                 foreach (var f in filtered)
                 {
                     i++;
-                    richTextBox1.AppendText(f.FullName + "\n");
+                    txtStatus.AppendText(f.FullName + "\n");
 
                     if (i > frames_before & i <= frame_count - frames_after)
                     {
-                        richTextBox1.AppendText("process: " + i + "\n");
+                        txtStatus.AppendText("process: " + i + "\n");
                         int subframe_position = 0;
 
                         String[] frames_to_process = new String[frames_before + frames_after + 1];
@@ -360,47 +351,37 @@ namespace WindowsFormsApplication1
                             frames_to_process[subframe_position] = filtered.ElementAt(i - b - 1).FullName;
                             subframe_position++;
 
-                            richTextBox1.AppendText("fb: " + filtered.ElementAt(i - b - 1).Name + "\n");
+                            txtStatus.AppendText("fb: " + filtered.ElementAt(i - b - 1).Name + "\n");
                         }
 
                         //frames_to_process.Last().Add(filtered.ElementAt(i - 1).FullName);
                         frames_to_process[subframe_position] = filtered.ElementAt(i - 1).FullName;
                         subframe_position++;
 
-                        richTextBox1.AppendText("cur: " + filtered.ElementAt(i - 1).Name + "\n");
+                        txtStatus.AppendText("cur: " + filtered.ElementAt(i - 1).Name + "\n");
 
                         for (int a = 1; a <= frames_after; a++)
                         {
                             //frames_to_process.Last().Add(filtered.ElementAt(i + a - 1).FullName);
                             frames_to_process[subframe_position] = filtered.ElementAt(i + a - 1).FullName;
                             subframe_position++;
-                            richTextBox1.AppendText("fa: " + filtered.ElementAt(i + a - 1).Name + "\n");
+                            txtStatus.AppendText("fa: " + filtered.ElementAt(i + a - 1).Name + "\n");
                         }
 
                         //String[] final = frames_to_process.ToArray();
 
                         processImages(frames_to_process, "" + i);
 
-                        richTextBox1.AppendText("-- end " + "\n\n");
+                        txtStatus.AppendText("-- end " + "\n\n");
                     }
 
 
-                    progressBar2.Value = progressBar2.Value + 1;
+                    progressSequence.Value = progressSequence.Value + 1;
                     Application.DoEvents();
                     //Debug.WriteLine(f);
                 }
 
             }
-        }
-
-        private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
-        {
-
-        }
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
         }
     }
 }

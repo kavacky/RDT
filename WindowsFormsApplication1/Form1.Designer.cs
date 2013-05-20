@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Form1
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,170 +28,167 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.dlgSelectFiles = new System.Windows.Forms.OpenFileDialog();
+            this.btnSingle = new System.Windows.Forms.Button();
+            this.progressSingle = new System.Windows.Forms.ProgressBar();
+            this.txtStatus = new System.Windows.Forms.RichTextBox();
+            this.rdTypePixel = new System.Windows.Forms.RadioButton();
+            this.rdTypeLinesVertical = new System.Windows.Forms.RadioButton();
+            this.rdTypeLinesHorizontal = new System.Windows.Forms.RadioButton();
+            this.rdTypeBlock = new System.Windows.Forms.RadioButton();
+            this.txtBlockWidth = new System.Windows.Forms.TextBox();
+            this.txtBlockHeight = new System.Windows.Forms.TextBox();
+            this.dlgSelectFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnSequence = new System.Windows.Forms.Button();
+            this.txtFramesBefore = new System.Windows.Forms.TextBox();
+            this.txtFramesAfter = new System.Windows.Forms.TextBox();
+            this.progressSequence = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
-            // openFileDialog1
+            // dlgSelectFiles
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            this.dlgSelectFiles.FileName = "openFileDialog1";
+            this.dlgSelectFiles.Multiselect = true;
             // 
-            // button1
+            // btnSingle
             // 
-            this.button1.Location = new System.Drawing.Point(566, 125);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 38);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSingle.Location = new System.Drawing.Point(566, 125);
+            this.btnSingle.Name = "btnSingle";
+            this.btnSingle.Size = new System.Drawing.Size(100, 38);
+            this.btnSingle.TabIndex = 0;
+            this.btnSingle.Text = "button1";
+            this.btnSingle.UseVisualStyleBackColor = true;
+            this.btnSingle.Click += new System.EventHandler(this.btnSingle_Click);
             // 
-            // progressBar1
+            // progressSingle
             // 
-            this.progressBar1.Location = new System.Drawing.Point(491, 200);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(362, 34);
-            this.progressBar1.TabIndex = 1;
-            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
+            this.progressSingle.Location = new System.Drawing.Point(491, 200);
+            this.progressSingle.Name = "progressSingle";
+            this.progressSingle.Size = new System.Drawing.Size(362, 34);
+            this.progressSingle.TabIndex = 1;
             // 
-            // richTextBox1
+            // txtStatus
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(21, 29);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(429, 402);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.txtStatus.Location = new System.Drawing.Point(21, 29);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(429, 402);
+            this.txtStatus.TabIndex = 2;
+            this.txtStatus.Text = "";
             // 
-            // radioButton1
+            // rdTypePixel
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(528, 309);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(46, 17);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.Text = "pixel";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdTypePixel.AutoSize = true;
+            this.rdTypePixel.Location = new System.Drawing.Point(528, 309);
+            this.rdTypePixel.Name = "rdTypePixel";
+            this.rdTypePixel.Size = new System.Drawing.Size(46, 17);
+            this.rdTypePixel.TabIndex = 3;
+            this.rdTypePixel.Text = "pixel";
+            this.rdTypePixel.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rdTypeLinesVertical
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(525, 348);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(45, 17);
-            this.radioButton2.TabIndex = 4;
-            this.radioButton2.Text = "lvert";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdTypeLinesVertical.AutoSize = true;
+            this.rdTypeLinesVertical.Location = new System.Drawing.Point(525, 348);
+            this.rdTypeLinesVertical.Name = "rdTypeLinesVertical";
+            this.rdTypeLinesVertical.Size = new System.Drawing.Size(45, 17);
+            this.rdTypeLinesVertical.TabIndex = 4;
+            this.rdTypeLinesVertical.Text = "lvert";
+            this.rdTypeLinesVertical.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rdTypeLinesHorizontal
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(525, 394);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(42, 17);
-            this.radioButton3.TabIndex = 5;
-            this.radioButton3.Text = "lhor";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rdTypeLinesHorizontal.AutoSize = true;
+            this.rdTypeLinesHorizontal.Location = new System.Drawing.Point(525, 394);
+            this.rdTypeLinesHorizontal.Name = "rdTypeLinesHorizontal";
+            this.rdTypeLinesHorizontal.Size = new System.Drawing.Size(42, 17);
+            this.rdTypeLinesHorizontal.TabIndex = 5;
+            this.rdTypeLinesHorizontal.Text = "lhor";
+            this.rdTypeLinesHorizontal.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // rdTypeBlock
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Checked = true;
-            this.radioButton4.Location = new System.Drawing.Point(524, 439);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(51, 17);
-            this.radioButton4.TabIndex = 6;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "block";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.rdTypeBlock.AutoSize = true;
+            this.rdTypeBlock.Checked = true;
+            this.rdTypeBlock.Location = new System.Drawing.Point(524, 439);
+            this.rdTypeBlock.Name = "rdTypeBlock";
+            this.rdTypeBlock.Size = new System.Drawing.Size(51, 17);
+            this.rdTypeBlock.TabIndex = 6;
+            this.rdTypeBlock.TabStop = true;
+            this.rdTypeBlock.Text = "block";
+            this.rdTypeBlock.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtBlockWidth
             // 
-            this.textBox1.Location = new System.Drawing.Point(502, 496);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(41, 20);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Text = "56";
+            this.txtBlockWidth.Location = new System.Drawing.Point(502, 496);
+            this.txtBlockWidth.Name = "txtBlockWidth";
+            this.txtBlockWidth.Size = new System.Drawing.Size(41, 20);
+            this.txtBlockWidth.TabIndex = 7;
+            this.txtBlockWidth.Text = "56";
             // 
-            // textBox2
+            // txtBlockHeight
             // 
-            this.textBox2.Location = new System.Drawing.Point(565, 494);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(69, 20);
-            this.textBox2.TabIndex = 8;
-            this.textBox2.Text = "56";
+            this.txtBlockHeight.Location = new System.Drawing.Point(565, 494);
+            this.txtBlockHeight.Name = "txtBlockHeight";
+            this.txtBlockHeight.Size = new System.Drawing.Size(69, 20);
+            this.txtBlockHeight.TabIndex = 8;
+            this.txtBlockHeight.Text = "56";
             // 
-            // folderBrowserDialog1
+            // dlgSelectFolder
             // 
-            this.folderBrowserDialog1.ShowNewFolderButton = false;
-            this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.folderBrowserDialog1_HelpRequest);
+            this.dlgSelectFolder.ShowNewFolderButton = false;
             // 
-            // button2
+            // btnSequence
             // 
-            this.button2.Location = new System.Drawing.Point(740, 41);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(67, 37);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnSequence.Location = new System.Drawing.Point(740, 41);
+            this.btnSequence.Name = "btnSequence";
+            this.btnSequence.Size = new System.Drawing.Size(67, 37);
+            this.btnSequence.TabIndex = 9;
+            this.btnSequence.Text = "button2";
+            this.btnSequence.UseVisualStyleBackColor = true;
+            this.btnSequence.Click += new System.EventHandler(this.btnSequence_Click);
             // 
-            // textBox3
+            // txtFramesBefore
             // 
-            this.textBox3.Location = new System.Drawing.Point(723, 82);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(46, 20);
-            this.textBox3.TabIndex = 10;
-            this.textBox3.Text = "3";
+            this.txtFramesBefore.Location = new System.Drawing.Point(723, 82);
+            this.txtFramesBefore.Name = "txtFramesBefore";
+            this.txtFramesBefore.Size = new System.Drawing.Size(46, 20);
+            this.txtFramesBefore.TabIndex = 10;
+            this.txtFramesBefore.Text = "3";
             // 
-            // textBox4
+            // txtFramesAfter
             // 
-            this.textBox4.Location = new System.Drawing.Point(789, 84);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(48, 20);
-            this.textBox4.TabIndex = 11;
-            this.textBox4.Text = "3";
+            this.txtFramesAfter.Location = new System.Drawing.Point(789, 84);
+            this.txtFramesAfter.Name = "txtFramesAfter";
+            this.txtFramesAfter.Size = new System.Drawing.Size(48, 20);
+            this.txtFramesAfter.TabIndex = 11;
+            this.txtFramesAfter.Text = "3";
             // 
-            // progressBar2
+            // progressSequence
             // 
-            this.progressBar2.Location = new System.Drawing.Point(707, 108);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(343, 31);
-            this.progressBar2.TabIndex = 12;
+            this.progressSequence.Location = new System.Drawing.Point(707, 108);
+            this.progressSequence.Name = "progressSequence";
+            this.progressSequence.Size = new System.Drawing.Size(343, 31);
+            this.progressSequence.TabIndex = 12;
             // 
-            // Form1
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 577);
-            this.Controls.Add(this.progressBar2);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.Controls.Add(this.progressSequence);
+            this.Controls.Add(this.txtFramesAfter);
+            this.Controls.Add(this.txtFramesBefore);
+            this.Controls.Add(this.btnSequence);
+            this.Controls.Add(this.txtBlockHeight);
+            this.Controls.Add(this.txtBlockWidth);
+            this.Controls.Add(this.rdTypeBlock);
+            this.Controls.Add(this.rdTypeLinesHorizontal);
+            this.Controls.Add(this.rdTypeLinesVertical);
+            this.Controls.Add(this.rdTypePixel);
+            this.Controls.Add(this.txtStatus);
+            this.Controls.Add(this.progressSingle);
+            this.Controls.Add(this.btnSingle);
+            this.Name = "frmMain";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -200,21 +197,21 @@
 
         #endregion
 
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.OpenFileDialog dlgSelectFiles;
+        private System.Windows.Forms.Button btnSingle;
+        private System.Windows.Forms.ProgressBar progressSingle;
+        private System.Windows.Forms.RichTextBox txtStatus;
+        private System.Windows.Forms.RadioButton rdTypePixel;
+        private System.Windows.Forms.RadioButton rdTypeLinesVertical;
+        private System.Windows.Forms.RadioButton rdTypeLinesHorizontal;
+        private System.Windows.Forms.RadioButton rdTypeBlock;
+        private System.Windows.Forms.TextBox txtBlockWidth;
+        private System.Windows.Forms.TextBox txtBlockHeight;
+        private System.Windows.Forms.FolderBrowserDialog dlgSelectFolder;
+        private System.Windows.Forms.Button btnSequence;
+        private System.Windows.Forms.TextBox txtFramesBefore;
+        private System.Windows.Forms.TextBox txtFramesAfter;
+        private System.Windows.Forms.ProgressBar progressSequence;
     }
 }
 
