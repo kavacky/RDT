@@ -72,7 +72,7 @@
             // 
             // progressSingle
             // 
-            this.progressSingle.Location = new System.Drawing.Point(12, 307);
+            this.progressSingle.Location = new System.Drawing.Point(12, 327);
             this.progressSingle.Name = "progressSingle";
             this.progressSingle.Size = new System.Drawing.Size(253, 34);
             this.progressSingle.TabIndex = 1;
@@ -81,7 +81,7 @@
             // 
             this.txtStatus.Location = new System.Drawing.Point(271, 12);
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(468, 329);
+            this.txtStatus.Size = new System.Drawing.Size(468, 349);
             this.txtStatus.TabIndex = 2;
             this.txtStatus.Text = "";
             // 
@@ -101,7 +101,7 @@
             // 
             // progressSequence
             // 
-            this.progressSequence.Location = new System.Drawing.Point(12, 257);
+            this.progressSequence.Location = new System.Drawing.Point(12, 268);
             this.progressSequence.Name = "progressSequence";
             this.progressSequence.Size = new System.Drawing.Size(253, 31);
             this.progressSequence.TabIndex = 12;
@@ -239,7 +239,7 @@
             // lblTotalProgress
             // 
             this.lblTotalProgress.AutoSize = true;
-            this.lblTotalProgress.Location = new System.Drawing.Point(9, 241);
+            this.lblTotalProgress.Location = new System.Drawing.Point(9, 252);
             this.lblTotalProgress.Name = "lblTotalProgress";
             this.lblTotalProgress.Size = new System.Drawing.Size(77, 13);
             this.lblTotalProgress.TabIndex = 17;
@@ -248,7 +248,7 @@
             // lblFrameProgress
             // 
             this.lblFrameProgress.AutoSize = true;
-            this.lblFrameProgress.Location = new System.Drawing.Point(9, 291);
+            this.lblFrameProgress.Location = new System.Drawing.Point(9, 311);
             this.lblFrameProgress.Name = "lblFrameProgress";
             this.lblFrameProgress.Size = new System.Drawing.Size(82, 13);
             this.lblFrameProgress.TabIndex = 18;
@@ -258,7 +258,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(749, 353);
+            this.ClientSize = new System.Drawing.Size(749, 372);
             this.Controls.Add(this.lblFrameProgress);
             this.Controls.Add(this.lblTotalProgress);
             this.Controls.Add(this.grpSequence);
