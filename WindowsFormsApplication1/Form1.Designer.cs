@@ -32,17 +32,24 @@
             this.btnSingle = new System.Windows.Forms.Button();
             this.progressSingle = new System.Windows.Forms.ProgressBar();
             this.txtStatus = new System.Windows.Forms.RichTextBox();
+            this.dlgSelectFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnSequence = new System.Windows.Forms.Button();
+            this.progressSequence = new System.Windows.Forms.ProgressBar();
+            this.grpType = new System.Windows.Forms.GroupBox();
             this.rdTypePixel = new System.Windows.Forms.RadioButton();
             this.rdTypeLinesVertical = new System.Windows.Forms.RadioButton();
             this.rdTypeLinesHorizontal = new System.Windows.Forms.RadioButton();
             this.rdTypeBlock = new System.Windows.Forms.RadioButton();
             this.txtBlockWidth = new System.Windows.Forms.TextBox();
             this.txtBlockHeight = new System.Windows.Forms.TextBox();
-            this.dlgSelectFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.btnSequence = new System.Windows.Forms.Button();
-            this.txtFramesBefore = new System.Windows.Forms.TextBox();
+            this.lblBlockSize = new System.Windows.Forms.Label();
+            this.grpSequence = new System.Windows.Forms.GroupBox();
+            this.lblSequenceFramesAfter = new System.Windows.Forms.Label();
+            this.lblSequenceFramesBefore = new System.Windows.Forms.Label();
             this.txtFramesAfter = new System.Windows.Forms.TextBox();
-            this.progressSequence = new System.Windows.Forms.ProgressBar();
+            this.txtFramesBefore = new System.Windows.Forms.TextBox();
+            this.grpType.SuspendLayout();
+            this.grpSequence.SuspendLayout();
             this.SuspendLayout();
             // 
             // dlgSelectFiles
@@ -52,86 +59,28 @@
             // 
             // btnSingle
             // 
-            this.btnSingle.Location = new System.Drawing.Point(566, 125);
+            this.btnSingle.Location = new System.Drawing.Point(12, 12);
             this.btnSingle.Name = "btnSingle";
             this.btnSingle.Size = new System.Drawing.Size(100, 38);
             this.btnSingle.TabIndex = 0;
-            this.btnSingle.Text = "button1";
+            this.btnSingle.Text = "Single";
             this.btnSingle.UseVisualStyleBackColor = true;
             this.btnSingle.Click += new System.EventHandler(this.btnSingle_Click);
             // 
             // progressSingle
             // 
-            this.progressSingle.Location = new System.Drawing.Point(491, 200);
+            this.progressSingle.Location = new System.Drawing.Point(12, 457);
             this.progressSingle.Name = "progressSingle";
-            this.progressSingle.Size = new System.Drawing.Size(362, 34);
+            this.progressSingle.Size = new System.Drawing.Size(727, 34);
             this.progressSingle.TabIndex = 1;
             // 
             // txtStatus
             // 
-            this.txtStatus.Location = new System.Drawing.Point(21, 29);
+            this.txtStatus.Location = new System.Drawing.Point(271, 12);
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(429, 402);
+            this.txtStatus.Size = new System.Drawing.Size(468, 402);
             this.txtStatus.TabIndex = 2;
             this.txtStatus.Text = "";
-            // 
-            // rdTypePixel
-            // 
-            this.rdTypePixel.AutoSize = true;
-            this.rdTypePixel.Location = new System.Drawing.Point(528, 309);
-            this.rdTypePixel.Name = "rdTypePixel";
-            this.rdTypePixel.Size = new System.Drawing.Size(46, 17);
-            this.rdTypePixel.TabIndex = 3;
-            this.rdTypePixel.Text = "pixel";
-            this.rdTypePixel.UseVisualStyleBackColor = true;
-            // 
-            // rdTypeLinesVertical
-            // 
-            this.rdTypeLinesVertical.AutoSize = true;
-            this.rdTypeLinesVertical.Location = new System.Drawing.Point(525, 348);
-            this.rdTypeLinesVertical.Name = "rdTypeLinesVertical";
-            this.rdTypeLinesVertical.Size = new System.Drawing.Size(45, 17);
-            this.rdTypeLinesVertical.TabIndex = 4;
-            this.rdTypeLinesVertical.Text = "lvert";
-            this.rdTypeLinesVertical.UseVisualStyleBackColor = true;
-            // 
-            // rdTypeLinesHorizontal
-            // 
-            this.rdTypeLinesHorizontal.AutoSize = true;
-            this.rdTypeLinesHorizontal.Location = new System.Drawing.Point(525, 394);
-            this.rdTypeLinesHorizontal.Name = "rdTypeLinesHorizontal";
-            this.rdTypeLinesHorizontal.Size = new System.Drawing.Size(42, 17);
-            this.rdTypeLinesHorizontal.TabIndex = 5;
-            this.rdTypeLinesHorizontal.Text = "lhor";
-            this.rdTypeLinesHorizontal.UseVisualStyleBackColor = true;
-            // 
-            // rdTypeBlock
-            // 
-            this.rdTypeBlock.AutoSize = true;
-            this.rdTypeBlock.Checked = true;
-            this.rdTypeBlock.Location = new System.Drawing.Point(524, 439);
-            this.rdTypeBlock.Name = "rdTypeBlock";
-            this.rdTypeBlock.Size = new System.Drawing.Size(51, 17);
-            this.rdTypeBlock.TabIndex = 6;
-            this.rdTypeBlock.TabStop = true;
-            this.rdTypeBlock.Text = "block";
-            this.rdTypeBlock.UseVisualStyleBackColor = true;
-            // 
-            // txtBlockWidth
-            // 
-            this.txtBlockWidth.Location = new System.Drawing.Point(502, 496);
-            this.txtBlockWidth.Name = "txtBlockWidth";
-            this.txtBlockWidth.Size = new System.Drawing.Size(41, 20);
-            this.txtBlockWidth.TabIndex = 7;
-            this.txtBlockWidth.Text = "56";
-            // 
-            // txtBlockHeight
-            // 
-            this.txtBlockHeight.Location = new System.Drawing.Point(565, 494);
-            this.txtBlockHeight.Name = "txtBlockHeight";
-            this.txtBlockHeight.Size = new System.Drawing.Size(69, 20);
-            this.txtBlockHeight.TabIndex = 8;
-            this.txtBlockHeight.Text = "56";
             // 
             // dlgSelectFolder
             // 
@@ -139,59 +88,173 @@
             // 
             // btnSequence
             // 
-            this.btnSequence.Location = new System.Drawing.Point(740, 41);
+            this.btnSequence.Location = new System.Drawing.Point(12, 56);
             this.btnSequence.Name = "btnSequence";
-            this.btnSequence.Size = new System.Drawing.Size(67, 37);
+            this.btnSequence.Size = new System.Drawing.Size(100, 37);
             this.btnSequence.TabIndex = 9;
-            this.btnSequence.Text = "button2";
+            this.btnSequence.Text = "Sequence";
             this.btnSequence.UseVisualStyleBackColor = true;
             this.btnSequence.Click += new System.EventHandler(this.btnSequence_Click);
             // 
-            // txtFramesBefore
+            // progressSequence
             // 
-            this.txtFramesBefore.Location = new System.Drawing.Point(723, 82);
-            this.txtFramesBefore.Name = "txtFramesBefore";
-            this.txtFramesBefore.Size = new System.Drawing.Size(46, 20);
-            this.txtFramesBefore.TabIndex = 10;
-            this.txtFramesBefore.Text = "3";
+            this.progressSequence.Location = new System.Drawing.Point(12, 420);
+            this.progressSequence.Name = "progressSequence";
+            this.progressSequence.Size = new System.Drawing.Size(727, 31);
+            this.progressSequence.TabIndex = 12;
+            // 
+            // grpType
+            // 
+            this.grpType.Controls.Add(this.lblBlockSize);
+            this.grpType.Controls.Add(this.txtBlockHeight);
+            this.grpType.Controls.Add(this.txtBlockWidth);
+            this.grpType.Controls.Add(this.rdTypeBlock);
+            this.grpType.Controls.Add(this.rdTypeLinesHorizontal);
+            this.grpType.Controls.Add(this.rdTypeLinesVertical);
+            this.grpType.Controls.Add(this.rdTypePixel);
+            this.grpType.Location = new System.Drawing.Point(12, 122);
+            this.grpType.Name = "grpType";
+            this.grpType.Size = new System.Drawing.Size(253, 116);
+            this.grpType.TabIndex = 15;
+            this.grpType.TabStop = false;
+            this.grpType.Text = "Type";
+            // 
+            // rdTypePixel
+            // 
+            this.rdTypePixel.AutoSize = true;
+            this.rdTypePixel.Location = new System.Drawing.Point(21, 19);
+            this.rdTypePixel.Name = "rdTypePixel";
+            this.rdTypePixel.Size = new System.Drawing.Size(52, 17);
+            this.rdTypePixel.TabIndex = 4;
+            this.rdTypePixel.Text = "Pixels";
+            this.rdTypePixel.UseVisualStyleBackColor = true;
+            // 
+            // rdTypeLinesVertical
+            // 
+            this.rdTypeLinesVertical.AutoSize = true;
+            this.rdTypeLinesVertical.Location = new System.Drawing.Point(21, 42);
+            this.rdTypeLinesVertical.Name = "rdTypeLinesVertical";
+            this.rdTypeLinesVertical.Size = new System.Drawing.Size(87, 17);
+            this.rdTypeLinesVertical.TabIndex = 5;
+            this.rdTypeLinesVertical.Text = "Lines vertical";
+            this.rdTypeLinesVertical.UseVisualStyleBackColor = true;
+            // 
+            // rdTypeLinesHorizontal
+            // 
+            this.rdTypeLinesHorizontal.AutoSize = true;
+            this.rdTypeLinesHorizontal.Location = new System.Drawing.Point(21, 65);
+            this.rdTypeLinesHorizontal.Name = "rdTypeLinesHorizontal";
+            this.rdTypeLinesHorizontal.Size = new System.Drawing.Size(98, 17);
+            this.rdTypeLinesHorizontal.TabIndex = 6;
+            this.rdTypeLinesHorizontal.Text = "Lines horizontal";
+            this.rdTypeLinesHorizontal.UseVisualStyleBackColor = true;
+            // 
+            // rdTypeBlock
+            // 
+            this.rdTypeBlock.AutoSize = true;
+            this.rdTypeBlock.Checked = true;
+            this.rdTypeBlock.Location = new System.Drawing.Point(21, 88);
+            this.rdTypeBlock.Name = "rdTypeBlock";
+            this.rdTypeBlock.Size = new System.Drawing.Size(57, 17);
+            this.rdTypeBlock.TabIndex = 7;
+            this.rdTypeBlock.TabStop = true;
+            this.rdTypeBlock.Text = "Blocks";
+            this.rdTypeBlock.UseVisualStyleBackColor = true;
+            // 
+            // txtBlockWidth
+            // 
+            this.txtBlockWidth.Location = new System.Drawing.Point(84, 85);
+            this.txtBlockWidth.Name = "txtBlockWidth";
+            this.txtBlockWidth.Size = new System.Drawing.Size(35, 20);
+            this.txtBlockWidth.TabIndex = 8;
+            this.txtBlockWidth.Text = "56";
+            // 
+            // txtBlockHeight
+            // 
+            this.txtBlockHeight.Location = new System.Drawing.Point(143, 85);
+            this.txtBlockHeight.Name = "txtBlockHeight";
+            this.txtBlockHeight.Size = new System.Drawing.Size(35, 20);
+            this.txtBlockHeight.TabIndex = 9;
+            this.txtBlockHeight.Text = "56";
+            // 
+            // lblBlockSize
+            // 
+            this.lblBlockSize.AutoSize = true;
+            this.lblBlockSize.Location = new System.Drawing.Point(125, 88);
+            this.lblBlockSize.Name = "lblBlockSize";
+            this.lblBlockSize.Size = new System.Drawing.Size(12, 13);
+            this.lblBlockSize.TabIndex = 10;
+            this.lblBlockSize.Text = "x";
+            // 
+            // grpSequence
+            // 
+            this.grpSequence.Controls.Add(this.lblSequenceFramesAfter);
+            this.grpSequence.Controls.Add(this.lblSequenceFramesBefore);
+            this.grpSequence.Controls.Add(this.txtFramesAfter);
+            this.grpSequence.Controls.Add(this.txtFramesBefore);
+            this.grpSequence.Location = new System.Drawing.Point(118, 56);
+            this.grpSequence.Name = "grpSequence";
+            this.grpSequence.Size = new System.Drawing.Size(147, 60);
+            this.grpSequence.TabIndex = 16;
+            this.grpSequence.TabStop = false;
+            this.grpSequence.Text = "Sequence";
+            // 
+            // lblSequenceFramesAfter
+            // 
+            this.lblSequenceFramesAfter.AutoSize = true;
+            this.lblSequenceFramesAfter.Location = new System.Drawing.Point(27, 38);
+            this.lblSequenceFramesAfter.Name = "lblSequenceFramesAfter";
+            this.lblSequenceFramesAfter.Size = new System.Drawing.Size(68, 13);
+            this.lblSequenceFramesAfter.TabIndex = 18;
+            this.lblSequenceFramesAfter.Text = "Frames after:";
+            // 
+            // lblSequenceFramesBefore
+            // 
+            this.lblSequenceFramesBefore.AutoSize = true;
+            this.lblSequenceFramesBefore.Location = new System.Drawing.Point(18, 16);
+            this.lblSequenceFramesBefore.Name = "lblSequenceFramesBefore";
+            this.lblSequenceFramesBefore.Size = new System.Drawing.Size(77, 13);
+            this.lblSequenceFramesBefore.TabIndex = 17;
+            this.lblSequenceFramesBefore.Text = "Frames before:";
             // 
             // txtFramesAfter
             // 
-            this.txtFramesAfter.Location = new System.Drawing.Point(789, 84);
+            this.txtFramesAfter.Location = new System.Drawing.Point(101, 31);
             this.txtFramesAfter.Name = "txtFramesAfter";
-            this.txtFramesAfter.Size = new System.Drawing.Size(48, 20);
-            this.txtFramesAfter.TabIndex = 11;
+            this.txtFramesAfter.Size = new System.Drawing.Size(35, 20);
+            this.txtFramesAfter.TabIndex = 16;
             this.txtFramesAfter.Text = "3";
             // 
-            // progressSequence
+            // txtFramesBefore
             // 
-            this.progressSequence.Location = new System.Drawing.Point(707, 108);
-            this.progressSequence.Name = "progressSequence";
-            this.progressSequence.Size = new System.Drawing.Size(343, 31);
-            this.progressSequence.TabIndex = 12;
+            this.txtFramesBefore.Location = new System.Drawing.Point(101, 9);
+            this.txtFramesBefore.Name = "txtFramesBefore";
+            this.txtFramesBefore.Size = new System.Drawing.Size(35, 20);
+            this.txtFramesBefore.TabIndex = 15;
+            this.txtFramesBefore.Text = "3";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1176, 577);
+            this.ClientSize = new System.Drawing.Size(749, 503);
+            this.Controls.Add(this.grpSequence);
+            this.Controls.Add(this.grpType);
             this.Controls.Add(this.progressSequence);
-            this.Controls.Add(this.txtFramesAfter);
-            this.Controls.Add(this.txtFramesBefore);
             this.Controls.Add(this.btnSequence);
-            this.Controls.Add(this.txtBlockHeight);
-            this.Controls.Add(this.txtBlockWidth);
-            this.Controls.Add(this.rdTypeBlock);
-            this.Controls.Add(this.rdTypeLinesHorizontal);
-            this.Controls.Add(this.rdTypeLinesVertical);
-            this.Controls.Add(this.rdTypePixel);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.progressSingle);
             this.Controls.Add(this.btnSingle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "frmMain";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "RDT";
+            this.grpType.ResumeLayout(false);
+            this.grpType.PerformLayout();
+            this.grpSequence.ResumeLayout(false);
+            this.grpSequence.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -201,17 +264,22 @@
         private System.Windows.Forms.Button btnSingle;
         private System.Windows.Forms.ProgressBar progressSingle;
         private System.Windows.Forms.RichTextBox txtStatus;
-        private System.Windows.Forms.RadioButton rdTypePixel;
-        private System.Windows.Forms.RadioButton rdTypeLinesVertical;
-        private System.Windows.Forms.RadioButton rdTypeLinesHorizontal;
-        private System.Windows.Forms.RadioButton rdTypeBlock;
-        private System.Windows.Forms.TextBox txtBlockWidth;
-        private System.Windows.Forms.TextBox txtBlockHeight;
         private System.Windows.Forms.FolderBrowserDialog dlgSelectFolder;
         private System.Windows.Forms.Button btnSequence;
-        private System.Windows.Forms.TextBox txtFramesBefore;
-        private System.Windows.Forms.TextBox txtFramesAfter;
         private System.Windows.Forms.ProgressBar progressSequence;
+        private System.Windows.Forms.GroupBox grpType;
+        private System.Windows.Forms.Label lblBlockSize;
+        private System.Windows.Forms.TextBox txtBlockHeight;
+        private System.Windows.Forms.TextBox txtBlockWidth;
+        private System.Windows.Forms.RadioButton rdTypeBlock;
+        private System.Windows.Forms.RadioButton rdTypeLinesHorizontal;
+        private System.Windows.Forms.RadioButton rdTypeLinesVertical;
+        private System.Windows.Forms.RadioButton rdTypePixel;
+        private System.Windows.Forms.GroupBox grpSequence;
+        private System.Windows.Forms.Label lblSequenceFramesAfter;
+        private System.Windows.Forms.Label lblSequenceFramesBefore;
+        private System.Windows.Forms.TextBox txtFramesAfter;
+        private System.Windows.Forms.TextBox txtFramesBefore;
     }
 }
 
