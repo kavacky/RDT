@@ -1,0 +1,2 @@
+logic to c
+frontend -> win, mac, linux (sux console only)?
